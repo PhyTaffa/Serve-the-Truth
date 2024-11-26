@@ -1,0 +1,107 @@
+
+---
+
+# **How to Run This Server on Your 'State-of-the-Art' Machine (RIP)**
+
+Hey, hey people. Filippo here.
+
+Congratulations! You've just set foot in the **wonderful, soul-crushing world of server hosting**, where your **glorious, state-of-the-art machine** (aka the potato you call your "gaming rig") will become a **fully-fledged server**. It’s going to be **an adventure**… mostly involving screaming at your screen.
+
+---
+
+### **1. Open the Project in VS Code (You Actually Managed to Do This)**
+
+So, you cloned the repo from GitHub. Incredible. Now, open it in **VS Code**, the sacred text editor of our times. I mean, if you’re still using Notepad, I’m amazed you even found this readme without getting lost on the way. Open that folder, press that shiny **VS Code** button, and let’s see if you can navigate your way out of this nightmare. No pressure. But, you know, there’s *always* pressure.
+
+---
+
+### **2. Install the Magic Packages (Not as Hard as It Sounds, I Swear)**
+
+Okay, now it’s time to **actually work**, but don’t panic, it’s not that bad. You won’t have to sell your soul or figure out why your computer is making weird noises. Just open a **PowerShell terminal** (because that’s what all the cool kids use, right?) inside VS Code and run this command:
+
+```bash
+npm install express express-session mysql2 cors nodemon
+```
+
+**CCP-Approved™**
+
+I know what you’re thinking: *Why in the hell do I need all this stuff?* Let’s break it down, champ:
+
+- **express**: Because setting up an HTTP server by hand is for **absolute masochists** who clearly have nothing better to do.
+- **express-session**: It will remember you. Unlike that one game where you forgot to save and lost hours of progress. Don’t worry, your server will always remember you.
+- **mysql2**: Because your server needs to talk to a **database**—and **database** sounds like something you can’t escape from, but it’s just a fancy word for "data storage" that will never, ever, ever work on the first try.
+- **cors**: It makes your server not spontaneously combust when it talks to the outside world. Your server won’t implode from external requests, but don’t hold your breath for anything else.
+- **nodemon**: This tool restarts your server when you make changes. In other words, it's a tool that does **half the work for you**, and we’re all about that lazy life.
+
+Once you type this out, hit **Enter**, and sit back. The terminal will work its magic and install everything while you stare blankly at the screen and wonder if you’ve made a terrible mistake.
+
+---
+
+### **3. Update Database Information (Do NOT Mess This Up)**
+
+Here it is: the **danger zone**. This is where everything can go horribly, horribly wrong. Forget the database credentials, and you'll end up with a server that's **more useless than your childhood dreams**. Open the `database.js` file and change the database information to something *you can actually use*.
+
+You’ll need to update:
+
+- **host**: Set this to 'localhost' if you’re keeping it simple, or *go big* with a remote server. But remember, that’s a step into **uncharted waters**, so don’t get cocky.
+- **user**: Your **MySQL username**. Pro tip: It's **not** 'root'. I know, it’s a shocker.
+- **password**: Remember that password you set? Yeah, it’s the one you don’t share with anyone. Hopefully you still remember it.
+- **database**: The name of the database. It **better exist**, because this isn’t a guessing game. *Throwing random words at it won’t help*.
+
+Here’s what your `database.js` should look like once you update it:
+
+```javascript
+const mysql = require('mysql2');
+
+const connection = mysql.createConnection({
+  host: 'localhost',  // Change this if you're a masochist and using a remote server
+  user: 'your_db_user',  // Not 'root', for the love of God
+  password: 'your_db_password',  // You remembered this, right?
+  database: 'your_db_name'  // Yes, this must exist. Please don’t just type gibberish
+});
+```
+
+If you **don’t** mess this up, your server will **thank you**. If you do, well, prepare for **total anarchy**.
+
+---
+
+### **4. Run the Server (Prepare for Glory)**
+
+Alright, enough procrastinating. It’s time to launch this **beast**. Open up a **Command Prompt** (because we’re not about that "fancy" PowerShell life for this step), and run:
+
+```bash
+nodemon index.js
+```
+
+This magical incantation will summon your server into existence. **Don’t panic** when your screen fills up with text like you’re trying to read the matrix. That’s just the server doing its thing. You’ll see something like this:
+
+```
+Server is running on http://0.0.0.0:3000 🤙
+Connected to the database! Please don’t break anything.
+```
+
+You did it. **Congratulations**, your server is now alive, and it will **exist until it inevitably breaks**, which will happen because servers have a way of doing that. 
+
+---
+
+### **5. Stop the Madness (Before It Consumes Your Soul)**
+
+Want to stop the server? Maybe you’re tired, maybe the **CCP is watching**, or maybe you just want to play more **breeders of nephelim**. Whatever the case, don’t sweat it. You don’t need to restart your whole computer like a savage.
+
+Just press **Ctrl + C** in your **Command Prompt**, and your server will peacefully die. It’s that easy. The **circle of life** continues, and you can resume living in your perpetual state of confusion.
+
+---
+
+**That’s It!** You’ve officially set up a server that will run until your "state-of-the-art" machine decides it’s had enough. If you run into any issues, just blame your database, your toaster, or your hamster who’s secretly running the server behind your back.
+
+Good luck, and may your server bring you more joy than that one time you tried to set up a Minecraft server. Or, at the very least, more joy than the last 45 minutes of your life you just spent reading this.
+
+---
+
+### Additional Notes:
+
+- **Remember**: Your server will break. It always does. It’s not a matter of *if*, but *when*. Be prepared to troubleshoot, possibly for hours.
+- If this guide somehow helped you get the server running, I’d love a thank-you note. Or, you know, a **massive cash donation**. Just saying.
+- Also, don’t forget: **The CCP is always watching**.
+
+---
