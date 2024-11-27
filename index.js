@@ -3,6 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const connection = require('./database');
 const userInfo = require('./API/userInfo');
+const challenge = require('./API/challenge')
 
 // Set the port of the server
 const serverPort = 3000;
@@ -33,6 +34,7 @@ app.use(express.static('www'));
 
 //API routs
 app.use('/userInfo', userInfo);
+app.use('/challenge', challenge);
 
 
 
@@ -52,10 +54,5 @@ connection.connect((err) => {
 // Note: Only 1 program can be listening at a single port at any time. This means we can't execute this server two times in the same port...
 app.listen(serverPort, '0.0.0.0', () => {
     //console.log('👌 Server is running at ' + serverPort);
-    console.log("Server is running on http://0.0.0.0:${serverPort} 🤙");
-});
-
-app.use((req, res, next) => {
-    console.log(`${req.method} ${req.url}`);
-    next();
+    console.log(`Server is running on http://0.0.0.0:${serverPort} 🤙`);
 });

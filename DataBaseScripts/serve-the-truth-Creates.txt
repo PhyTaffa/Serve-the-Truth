@@ -1,67 +1,69 @@
-#serve the truth creates and iserts
-drop table UserInfo;
-drop table User_Challenge;
+drop table userinfo_challenge;
+drop table userInfo;
 drop table Step_Challenge;
-drop table Challenge;
+##drop table Challenge;
 
 
 #creates
 create table UserInfo (
-                 	userInfo_id int not null auto_increment,
-                 	userInfo_name VARCHAR(60) not null,
-					userInfo_email VARCHAR(60),
-					userInfo_pfp int not null,
+                 	ui_id int not null auto_increment,
+                 	ui_name VARCHAR(60) not null,
+					ui_email VARCHAR(60),
+					ui_pfp int not null,
+                    ui_uniqueId int not null,
                     
-					primary key (userInfo_id)
+					primary key (ui_id)
 );
 
-create table Challenge (
-                 	challenge_id int not null auto_increment,
-                 	challenge_title VARCHAR(255) not null,	
-					challenge_description VARCHAR(255) not null,	
-                    challenge_assets int not null,
-                    challenge_skin int not null,
+#create table Challenge (
+#                 	challenge_id int not null auto_increment,
+#                 	challenge_title VARCHAR(255) not null,	
+#					challenge_description VARCHAR(255) not null,	
+#                    challenge_assets int not null,
+#                    challenge_skin int not null,
+#                    
+#                 	primary key (challenge_id)
+#);
+
+create table UserInfo_Challenge (
+					uc_id int not null auto_increment,
+                    uc_ui_id int not null,		#FK to userInfo
+                    uc_sc_id int not null,				#FK to Step_challenge
+                    us_currSteps int not null,
+                    us_startTime int not null,
+                    us_isStarted bool not null,
+                    us_hasBeenCompleted bool not null,
                     
-                 	primary key (challenge_id)
+                    primary key (uc_id)
 );
 
+#Static Table
 create table Step_Challenge (
 					sc_id int not null auto_increment,
                     sc_title VARCHAR(255) not null,
                     sc_description VARCHAR(255) not null,
                     sc_assets int not null,
                     sc_skin int not null,
-                    sc_setpsToREach int not null,
+                    sc_difficulty int not null,
+                    sc_stepsToReach int not null,
                     sc_timeLimit int not null,
-                    sc_challenge_id int not null,		#FK to challenge
+                    #sc_us_id int not null,		#FK to userInfo_Challenge
                     
                     primary key (sc_id)
 );
 
-create table UserInfo_Challenge (
-					uc_id int not null auto_increment,
-                    uc_userInfo_id int not null,		#FK to userInfo
-                    uc_sc_id int not null,				#FK to Step_challenge
-                    us_currSteps int not null,
-                    us_startTime int not null,
-                    us_isStarted bool not null,
-                    
-                    primary key (uc_id)
-);
-
-
 -- Foreign Keys
 alter table UserInfo_Challenge
 add constraint userInfoChallenge_fk_userInfo 
-foreign key (uc_userInfo_id) references UserInfo(userInfo_id) 
+foreign key (uc_ui_id) references UserInfo(ui_id) 
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 alter table UserInfo_Challenge
-add constraint userInfoChallenge_fk_challenge
-foreign key (uc_sc_id) references Challenge(challenge_id) 
+add constraint userInfoChallenge_fk_stepChallenge
+foreign key (uc_sc_id) references step_challenge(sc_id) 
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 
-alter table Step_Challenge
-add constraint stepChallenge_fk_challenge 
-foreign key (sc_challenge_id) references Challenge(challenge_id) 
-ON DELETE NO ACTION ON UPDATE NO ACTION;
+#alter table Step_Challenge
+#add constraint stepChallenge_fk_challenge 
+#foreign key (sc_challenge_id) references Challenge(challenge_id) 
+#ON DELETE NO ACTION ON UPDATE NO ACTION;
