@@ -28,7 +28,7 @@ router.get('/GetById/:userId', (request, response) => {
     const userId = request.params.userId;
 
     //gives back all the users
-    connection.execute('SELECT * FROM userinfo WHERE userInfo_id = ?',
+    connection.execute('SELECT * FROM userinfo WHERE ui_id = ?',
         [userId],
         function (err, results, fields) {
             if (err){
