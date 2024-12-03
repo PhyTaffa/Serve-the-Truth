@@ -10,47 +10,47 @@ insert into UserInfo (ui_name, ui_email, ui_pfp, ui_uniqueId) values('name 4', "
 INSERT INTO Step_Challenge (sc_title, sc_description, sc_assets, sc_skin, sc_difficulty, sc_stepsToReach, sc_timeLimit)
 VALUES
 ("Challenge 1", "Description 1", 1, 1, 1, 1500, 100),  -- Difficulty 1 (Low steps)
-("Challenge 2", "Description 2", 1, 2, 2, 3050, 100),  -- Difficulty 2 (Medium steps)
-("Challenge 3", "Description 3", 1, 2, 3, 7530, 100),  -- Difficulty 3 (High steps)
-("Challenge 4", "Description 4", 1, 2, 3, 6230, 100),  -- Difficulty 3 (High steps)
-("Challenge 5", "Description 5", 1, 2, 4, 8590, 100),  -- Difficulty 4 (Very High steps)
-("Challenge 6", "Description 6", 1, 2, 2, 4590, 100),  -- Difficulty 2 (Medium steps)
-("Challenge 7", "Description 7", 1, 2, 4, 9820, 100);  -- Difficulty 4 (Very High steps)
+("Challenge 2", "Description 2", 2, 2, 2, 3050, 100),  -- Difficulty 2 (Medium steps)
+("Challenge 3", "Description 3", 3, 2, 3, 7530, 100),  -- Difficulty 3 (High steps)
+("Challenge 4", "Description 4", 4, 2, 3, 6230, 100),  -- Difficulty 3 (High steps)
+("Challenge 5", "Description 5", 5, 2, 4, 8590, 100),  -- Difficulty 4 (Very High steps)
+("Challenge 6", "Description 6", 6, 2, 2, 4590, 100),  -- Difficulty 2 (Medium steps)
+("Challenge 7", "Description 7", 6, 2, 4, 9820, 100);  -- Difficulty 4 (Very High steps)
 
-INSERT INTO UserInfo_Challenge (uc_ui_id, uc_sc_id, us_currSteps, us_startTime, us_isStarted, us_hasBeenCompleted)
+INSERT INTO UserInfo_Challenge (uc_ui_id, uc_sc_id, uc_currSteps, uc_startTime, uc_isStarted)
 VALUES
 -- User 1 (uc_ui_id = 1)
-(1, 1, 1400, 1 ,true, false),  -- User 1, Challenge 1 (Started, not completed)
-(1, 2, 1200, 0, false, false), -- User 1, Challenge 2 (Not Started)
-(1, 3, 700, 0, false, false),  -- User 1, Challenge 3 (Not Started)
-(1, 4, 0, 0, false, false),  -- User 1, Challenge 4 (Not Started)
-(1, 5, 8590, 1, false, true),   -- User 1, Challenge 5 (Not Started, completed)
-(1, 6, 0, 0, false, false),  -- User 1, Challenge 6 (Not Started)
-(1, 7, 9820, 1, false, true),  -- User 1, Challenge 7 (Not Started, completed)
+(1, 1, 1400, 1, 1),  -- User 1, Challenge 1
+(1, 2, 1200, 0, 0),  -- User 1, Challenge 2
+(1, 3, 700, 0, 0),   -- User 1, Challenge 3
+(1, 4, 0, 0, 0),     -- User 1, Challenge 4
+(1, 5, 8590, 1, 1),  -- User 1, Challenge 5
+(1, 6, 0, 0, 0),     -- User 1, Challenge 6
+(1, 7, 9820, 1, 1),  -- User 1, Challenge 7
 
 -- User 2 (uc_ui_id = 2)
-(2, 1, 0, 0, false, false),  -- User 2, Challenge 1 (Not Started)
-(2, 2, 3050, 1, true, true),    -- User 2, Challenge 2 (Started and completed)
-(2, 3, 7230, 1, false, true),  -- User 2, Challenge 3 (Not Started, completed)
-(2, 4, 0, 0, false, false), -- User 2, Challenge 4 (Not Started)
-(2, 5, 0, 0, false, false),  -- User 2, Challenge 5 (Not Started)
-(2, 6, 0, 0, false, false),  -- User 2, Challenge 6 (Not Started)
-(2, 7, 0, 0, false, false), -- User 2, Challenge 7 (Not Started)
+(2, 1, 0, 0, 0),     -- User 2, Challenge 1
+(2, 2, 3050, 1, 1),  -- User 2, Challenge 2
+(2, 3, 7230, 1, 1),  -- User 2, Challenge 3
+(2, 4, 0, 0, 0),     -- User 2, Challenge 4
+(2, 5, 0, 0, 0),     -- User 2, Challenge 5
+(2, 6, 0, 0, 0),     -- User 2, Challenge 6
+(2, 7, 0, 0, 0),     -- User 2, Challenge 7
 
 -- User 3 (uc_ui_id = 3)
-(3, 1, 0, 0, false, false),  -- User 3, Challenge 1 (Not Started)
-(3, 2, 3050, 1, true, true),    -- User 3, Challenge 2 (Started and completed)
-(3, 3, 0, 0, false, false),   -- User 3, Challenge 3 (Not Started)
-(3, 4, 6230, 1, false, true),   -- User 3, Challenge 4 (Not Started, completed)
-(3, 5, 8590, 0, false, true),   -- User 3, Challenge 5 (Not Started, completed)
-(3, 6, 0, 0, false, false),   -- User 3, Challenge 6 (Not Started)
-(3, 7, 9820, 1, false, true),   -- User 3, Challenge 7 (Not Started, completed)
+(3, 1, 0, 0, 0),     -- User 3, Challenge 1
+(3, 2, 3050, 1, 1),  -- User 3, Challenge 2
+(3, 3, 0, 0, 0),     -- User 3, Challenge 3
+(3, 4, 6230, 1, 1),  -- User 3, Challenge 4
+(3, 5, 8590, 0, 1),  -- User 3, Challenge 5
+(3, 6, 0, 0, 0),     -- User 3, Challenge 6
+(3, 7, 9820, 1, 1),  -- User 3, Challenge 7
 
 -- User 4 (uc_ui_id = 4)
-(4, 1, 1500, 1, true, true),     -- User 4, Challenge 1 (Started and completed)
-(4, 2, 0, 0, false, false),  -- User 4, Challenge 2 (Not Started)
-(4, 3, 7530, 1, false, true),    -- User 4, Challenge 3 (Not Started, completed)
-(4, 4, 0, 0, false, false),   -- User 4, Challenge 4 (Not Started)
-(4, 5, 8590, 1, false, true),   -- User 4, Challenge 5 (Not Started, completed)
-(4, 6, 4590, 1, false, true),   -- User 4, Challenge 6 (Not Started, completed)
-(4, 7, 9820, 1, false, true);   -- User 4, Challenge 7 (Not Started, completed)
+(4, 1, 1500, 1, 1),  -- User 4, Challenge 1
+(4, 2, 0, 0, 0),     -- User 4, Challenge 2
+(4, 3, 7530, 1, 1),  -- User 4, Challenge 3
+(4, 4, 0, 0, 0),     -- User 4, Challenge 4
+(4, 5, 8590, 1, 1),  -- User 4, Challenge 5
+(4, 6, 4590, 1, 1),  -- User 4, Challenge 6
+(4, 7, 9820, 1, 1);  -- User 4, Challenge 7

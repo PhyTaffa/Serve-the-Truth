@@ -32,7 +32,6 @@ create table UserInfo_Challenge (
                     us_currSteps int not null,
                     us_startTime int not null,
                     us_isStarted bool not null,
-                    us_hasBeenCompleted bool not null,
                     
                     primary key (uc_id)
 );

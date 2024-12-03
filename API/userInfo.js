@@ -27,6 +27,11 @@ router.get('/GetById/:userId', (request, response) => {
 
     const userId = request.params.userId;
 
+    if(!userId)
+    {
+        response.send("User id is missing")
+    }
+
     //gives back all the users
     connection.execute('SELECT * FROM userinfo WHERE ui_id = ?',
         [userId],
