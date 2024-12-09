@@ -1,10 +1,10 @@
 #         inserts
 #--------------------------------------------------------Dynamic Table----------------------------------------------------------------------------
 
-insert into UserInfo (ui_name, ui_email, ui_pfp, ui_uniqueId) values('name 1', "dontCare@all.yes", 1 ,11);	#id:1
-insert into UserInfo (ui_name, ui_email, ui_pfp, ui_uniqueId) values('name 2', "dontCare@all.yes", 2, 22);	#id:2
-insert into UserInfo (ui_name, ui_email, ui_pfp, ui_uniqueId) values('name 3', "dontCare@all.yes", 3, 33);	#id:3
-insert into UserInfo (ui_name, ui_email, ui_pfp, ui_uniqueId) values('name 4', "dontCare@all.nice", 4, 44);	#id:4
+insert into UserInfo (ui_name, ui_email, ui_pfp, ui_activeChallRef, ui_uniqueId) values('name 1', "dontCare@all.yes", 1, 1, 11);	#id:1
+insert into UserInfo (ui_name, ui_email, ui_pfp, ui_activeChallRef, ui_uniqueId) values('name 2', "dontCare@all.yes", 2, 1, 22);	#id:2
+insert into UserInfo (ui_name, ui_email, ui_pfp, ui_activeChallRef, ui_uniqueId) values('name 3', "dontCare@all.yes", 3, 1, 33);	#id:3
+insert into UserInfo (ui_name, ui_email, ui_pfp, ui_activeChallRef, ui_uniqueId) values('name 4', "dontCare@all.nit", 4, 1, 44);	#id:4
 
 
 INSERT INTO Step_Challenge (sc_title, sc_description, sc_assets, sc_skin, sc_difficulty, sc_stepsToReach, sc_timeLimit)
