@@ -6,7 +6,7 @@ const connection = require('../database');
 router.get('/all', (request, response) => {
 
     //gives back all the users
-    connection.execute('SELECT * FROM userinfo;',
+    connection.execute('SELECT * FROM UserInfo;',
         function (err, results, fields) {
             if (err){
                 response.send(err);
@@ -33,7 +33,7 @@ router.get('/GetById/:userId', (request, response) => {
     }
 
     //gives back all the users
-    connection.execute('SELECT * FROM userinfo WHERE ui_id = ?',
+    connection.execute('SELECT * FROM UserInfo WHERE ui_id = ?',
         [userId],
         function (err, results, fields) {
             if (err){
@@ -73,7 +73,7 @@ router.put('/PutPreviouslyActiveChallengeSteps/:userId/:challengeId/:numbOfSteps
     }
 
     //gives back all the users
-    connection.execute('UPDATE userinfo_challenge SET uc_currSteps = ? WHERE uc_ui_id = ? AND uc_sc_id = ?;',
+    connection.execute('UPDATE UserInfo_Challenge SET uc_currSteps = ? WHERE uc_ui_id = ? AND uc_sc_id = ?;',
         [stepsNum, userId, challengeId],
         function (err, results, fields) {
             if (err){
@@ -109,7 +109,7 @@ router.put('/PutActiveChallenge/:userId/:challengeId', (request, response) => {
     }
 
     //gives back all the users
-    connection.execute('UPDATE userinfo SET ui_activeChallRef = ? WHERE ui_id = ?;',
+    connection.execute('UPDATE UserInfo SET ui_activeChallRef = ? WHERE ui_id = ?;',
         [challengeId, userId],
         function (err, results, fields) {
             if (err){

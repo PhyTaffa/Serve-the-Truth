@@ -5,7 +5,7 @@ const connection = require('../database');
 router.get('/all', (request, response) => {
 
     //gives back all the users
-    connection.execute('SELECT * FROM step_challenge;',
+    connection.execute('SELECT * FROM Step_Challenge;',
         function (err, results, fields) {
             if (err){
                 response.send(err);
@@ -34,7 +34,7 @@ router.get('/ById/:userId', (request, response) => {
 
 
     //gives back all the users
-    connection.execute('SELECT uc_id, ui_id, sc_id, sc_title, sc_description, sc_assets, sc_skin, sc_difficulty, sc_stepsToReach, sc_timeLimit, uc_currSteps, uc_startTime, uc_isStarted FROM userinfo_challenge INNER JOIN userinfo ON ui_id = uc_ui_id INNER JOIN step_challenge ON uc_sc_id = sc_id WHERE uc_ui_id = ?;',
+    connection.execute('SELECT uc_id, ui_id, sc_id, sc_title, sc_description, sc_assets, sc_skin, sc_difficulty, sc_stepsToReach, sc_timeLimit, uc_currSteps, uc_startTime, uc_isStarted FROM UserInfo_Challenge INNER JOIN UserInfo ON ui_id = uc_ui_id INNER JOIN Step_Challenge ON uc_sc_id = sc_id WHERE uc_ui_id = ?;',
         [userId],
         function (err, results, fields) {
             if (err){
