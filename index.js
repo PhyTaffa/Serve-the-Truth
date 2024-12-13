@@ -54,5 +54,5 @@ connection.connect((err) => {
 // Note: Only 1 program can be listening at a single port at any time. This means we can't execute this server two times in the same port...
 app.listen(serverPort, '0.0.0.0', () => {
     //console.log('👌 Server is running at ' + serverPort);
-    console.log(`Server is running on http://0.0.0.0:${serverPort} 🤙`);
+    console.log(`Server is running on http://0.0.0.0:${serverPort} 🤙🦟`);
 });
