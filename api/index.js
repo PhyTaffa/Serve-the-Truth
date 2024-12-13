@@ -37,6 +37,10 @@ app.use('/userInfo', userInfo);
 app.use('/challenge', challenge);
 
 
+// Export as a Vercel-compatible serverless function
+module.exports = (req, res) => {
+    app(req, res);
+};
 
 
 
