@@ -33,8 +33,8 @@ app.use(session({
 app.use(express.static('www'));
 
 //API routs
-app.use('/userInfo/all', userInfoAll);
-app.use('/challenge/all', challengeAll);
+app.use('/userInfo/all/', userInfoAll);
+app.use('/challenge/all/', challengeAll);
 
 
 // Export as a Vercel-compatible serverless function
