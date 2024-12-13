@@ -2,8 +2,8 @@
 const express = require('express');
 const session = require('express-session');
 const connection = require('../database');
-const userInfo = require('./userInfo');
-const challenge = require('./challenge');
+const userInfo = require('./api/userInfo');
+const challenge = require('./api/challenge');
 
 // Set the port of the server
 const serverPort = 3000;
