@@ -1,9 +1,9 @@
 // Dependencies of the project
 const express = require('express');
 const session = require('express-session');
-const connection = require('./database');
-const userInfo = require('./API/userInfo');
-const challenge = require('./API/challenge')
+const connection = require('../database');
+const userInfo = require('./userInfo');
+const challenge = require('./challenge')
 
 // Set the port of the server
 const serverPort = 3000;
