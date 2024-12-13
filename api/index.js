@@ -3,7 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const connection = require('../database');
 const userInfo = require('./userInfo');
-const challenge = require('./challenge')
+const challenge = require('./challenge');
 
 // Set the port of the server
 const serverPort = 3000;
