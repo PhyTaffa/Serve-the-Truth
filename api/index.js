@@ -3,6 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const connection = require('../database');
 const userInfoAll = require('../api/userInfo/all');
+const userInfoById = require('../api/userInfo/getById');
 const challengeAll = require('../api/challenge/all');
 
 // Set the port of the server
@@ -34,6 +35,7 @@ app.use(express.static('www'));
 
 //API routs
 app.use('/userInfo/all/', userInfoAll);
+app.use('/userInfo/getById', userInfoById);
 app.use('/challenge/all/', challengeAll);
 
 
