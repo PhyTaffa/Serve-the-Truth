@@ -5,6 +5,7 @@ const connection = require('../database');
 const userInfoAll = require('../api/userInfo/all');
 const userInfoById = require('../api/userInfo/getById');
 const userInfoUpdatePrevChallenge = require('../api/userInfo/updatePreviousChallenge.js');
+const userInfoUpdateActiveChallenge = require('../api/userInfo/setActiveChallenge.js')
 const challengeAll = require('../api/challenge/all');
 const challengeById = require('../api/challenge/getById');
 
@@ -38,7 +39,8 @@ app.use(express.static('www'));
 //API routs
 app.use('/userInfo/all/', userInfoAll);
 app.use('/userInfo/getById', userInfoById);
-app.use('/userInfo/userInfoUpdatePreviousChallenge', userInfoUpdatePrevChallenge)
+app.use('/userInfo/updatePreviousChallenge', userInfoUpdatePrevChallenge);
+app.use('/userInfo/setActiveChallenge', userInfoUpdateActiveChallenge);
 app.use('/challenge/all/', challengeAll);
 app.use('/challenge/getById/', challengeById);
 

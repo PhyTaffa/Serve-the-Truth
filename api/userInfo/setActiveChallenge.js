@@ -1,9 +1,8 @@
 const connection = require('../../database');
 
-//Updates the value of currSteps to the one given. Not adds it to the one stored.
 module.exports = async (req, res) => {
   if (req.method === 'PUT') {
-    const { userId, challengeId, numbOfSteps: stepsNum } = req.query;
+    const { userId, challengeId } = req.query;
 
     // Validate input parameters
     if (!userId) {
@@ -12,24 +11,21 @@ module.exports = async (req, res) => {
     if (!challengeId) {
       return res.status(400).json({ error: 'Challenge ID is missing' });
     }
-    if (!stepsNum) {
-      return res.status(400).json({ error: 'Number of steps is missing' });
-    }
 
     try {
-      // Update the challenge steps in the database
+      // Update the active challenge reference in the database
       const [results] = await connection.promise().execute(
-        'UPDATE UserInfo_Challenge SET uc_currSteps = ? WHERE uc_ui_id = ? AND uc_sc_id = ?;',
-        [stepsNum, userId, challengeId]
+        'UPDATE UserInfo SET ui_activeChallRef = ? WHERE ui_id = ?;',
+        [challengeId, userId]
       );
 
       if (results.affectedRows === 0) {
-        return res.status(404).json({ message: 'No matching challenge or user found for the update.' });
+        return res.status(404).json({ message: 'No matching user or challenge found for the update.' });
       }
 
-      console.log('Update of active challenge steps successful');
+      console.log('Update of active challenge successful');
       res.status(200).json({
-        message: `Successfully updated challenge ${challengeId} with ${stepsNum} steps for user ${userId}`,
+        message: `Successfully updated active challenge to ${challengeId} for user ${userId}`,
       });
     } catch (err) {
       console.error('Database error:', err);
