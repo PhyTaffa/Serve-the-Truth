@@ -5,6 +5,7 @@ const connection = require('../database');
 const userInfoAll = require('../api/userInfo/all');
 const userInfoById = require('../api/userInfo/getById');
 const challengeAll = require('../api/challenge/all');
+const challengeById = require('../api/challenge/getById')
 
 // Set the port of the server
 const serverPort = 3000;
@@ -37,6 +38,7 @@ app.use(express.static('www'));
 app.use('/userInfo/all/', userInfoAll);
 app.use('/userInfo/getById', userInfoById);
 app.use('/challenge/all/', challengeAll);
+app.use('/challenge/getById/', challengeById);
 
 
 // Export as a Vercel-compatible serverless function
