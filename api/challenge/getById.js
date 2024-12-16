@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
 
     // Check if userId is provided
     if (!userId) {
-      return res.status(400).json({ error: 'User ID is missing ' + req.query });
+      return res.status(400).json({ error: 'User ID is missing'});
     }
 
     try {
