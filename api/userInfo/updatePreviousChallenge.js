@@ -3,7 +3,7 @@ const connection = require('../../database');
 //Updates the value of currSteps to the one given. Not adds it to the one stored.
 module.exports = async (req, res) => {
   if (req.method === 'PUT') {
-    const { userId, challengeId, numbOfSteps: stepsNum } = req.query;
+    const { userId, challengeId, numbOfSteps: stepsNum, isStarted } = req.query;
 
     // Validate input parameters
     if (!userId) {
@@ -15,12 +15,15 @@ module.exports = async (req, res) => {
     if (!stepsNum) {
       return res.status(400).json({ error: 'Number of steps is missing' });
     }
+    if (!isStarted) {
+      return res.status(400).json({ error: 'Challenge start status is missing' });
+    }
 
     try {
       // Update the challenge steps in the database
       const [results] = await connection.promise().execute(
-        'UPDATE UserInfo_Challenge SET uc_currSteps = ? WHERE uc_ui_id = ? AND uc_sc_id = ?;',
-        [stepsNum, userId, challengeId]
+        'UPDATE UserInfo_Challenge SET uc_isStarted = ?, uc_currSteps = ? WHERE uc_ui_id = ? AND uc_sc_id = ?;',
+        [isStarted, stepsNum, userId, challengeId]
       );
 
       if (results.affectedRows === 0) {
