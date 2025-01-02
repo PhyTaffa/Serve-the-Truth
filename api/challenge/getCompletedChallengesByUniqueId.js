@@ -26,8 +26,7 @@ module.exports = async (req, res) => {
 
       // Query the challenges for the user
       const [challengeResults] = await connection.promise().execute(
-        `SELECT uc_id, sc_id, sc_title, sc_description, sc_assets, sc_skin, sc_difficulty, 
-                sc_stepsToReach, sc_timeLimit, uc_currSteps, uc_startTime, uc_isStarted
+        `SELECT uc_id, sc_stepsToReach, uc_currSteps, uc_startTime
          FROM UserInfo_Challenge
          INNER JOIN Step_Challenge ON uc_sc_id = sc_id
          WHERE uc_ui_id = ?;`,
@@ -41,10 +40,6 @@ module.exports = async (req, res) => {
       // Map the challenges to check the condition for each
       const challengeStatus = challengeResults.map(challenge => {
         return {
-          sc_id: challenge.sc_id,
-          sc_title: challenge.sc_title,
-          sc_currSteps: challenge.uc_currSteps,
-          sc_stepsToReach: challenge.sc_stepsToReach,
           challengeMet: challenge.uc_currSteps >= challenge.sc_stepsToReach
         };
       });
