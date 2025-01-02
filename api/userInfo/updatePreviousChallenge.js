@@ -36,7 +36,7 @@ module.exports = async (req, res) => {
       });
     } catch (err) {
       console.error('Database error:', err);
-      res.status(500).json({ error: 'Internal server error' });
+      res.status(500).json({ error: 'Internal server error asdkhvofajsvflajsdofasvdfj' });
     }
   } else {
     res.status(405).json({ error: 'Method Not Allowed' });

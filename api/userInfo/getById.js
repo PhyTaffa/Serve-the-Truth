@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
       }
 
       // Return the first user found
-      console.error('userId:', req.params);
+      //console.error('userId:', req.params);
       res.status(200).json(results[0]);
     });
   } else {
