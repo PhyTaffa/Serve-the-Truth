@@ -1,6 +1,6 @@
 #serve the truth creates and iserts
-drop table userinfo_challenge;
-drop table userInfo;
+drop table userInfo_Challenge;
+drop table UserInfo;
 drop table Step_Challenge;
 ##drop table Challenge;
 
@@ -21,8 +21,8 @@ create table UserInfo (
 #                 	challenge_id int not null auto_increment,
 #                 	challenge_title VARCHAR(255) not null,	
 #					challenge_description VARCHAR(255) not null,	
-#                    challenge_assets int not null,
-#                    challenge_skin int not null,
+#                   challenge_assets int not null,
+#                   challenge_skin int not null,
 #                    
 #                 	primary key (challenge_id)
 #);
@@ -61,7 +61,7 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 alter table UserInfo_Challenge
 add constraint userInfoChallenge_fk_stepChallenge
-foreign key (uc_sc_id) references step_challenge(sc_id) 
+foreign key (uc_sc_id) references Step_Challenge(sc_id) 
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 #alter table Step_Challenge

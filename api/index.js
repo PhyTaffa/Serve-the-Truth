@@ -8,6 +8,7 @@ const userInfoUpdatePrevChallenge = require('../api/userInfo/updatePreviousChall
 const userInfoUpdateActiveChallenge = require('../api/userInfo/setActiveChallenge.js')
 const challengeAll = require('../api/challenge/all');
 const challengeById = require('../api/challenge/getById');
+const challengeMetByUniqueId = require('../api/challenge/getCompletedChallengesByUniqueId');
 
 // Set the port of the server
 const serverPort = 3000;
@@ -43,6 +44,7 @@ app.use('/userInfo/updatePreviousChallenge', userInfoUpdatePrevChallenge);
 app.use('/userInfo/setActiveChallenge', userInfoUpdateActiveChallenge);
 app.use('/challenge/all/', challengeAll);
 app.use('/challenge/getById/', challengeById);
+app.use('/challenge/getCompletedChallengesByUniqueId/', challengeMetByUniqueId);
 
 
 // Export as a Vercel-compatible serverless function
@@ -65,6 +67,5 @@ connection.connect((err) => {
 // Listen on port for any requests made.
 // Note: Only 1 program can be listening at a single port at any time. This means we can't execute this server two times in the same port...
 app.listen(serverPort, '0.0.0.0', () => {
-    //console.log('👌 Server is running at ' + serverPort);
     console.log(`Server is running on http://0.0.0.0:${serverPort} 🤙🦟`);
 });
