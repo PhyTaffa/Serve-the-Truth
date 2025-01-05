@@ -16,7 +16,10 @@ const connection = mysql.createConnection({
     user: 'ServeTheTruth_individual', 
     port: "3307",
     password: 'b30aa021bd77a83b6cb81330dc52e0719f677bce',
-    database: 'ServeTheTruth_individual' 
+    database: 'ServeTheTruth_individual',
+    waitForConnections: true, // Will wait if no connection is available
+    connectionLimit: 5,      // Match the connection limit of your online DB
+    queueLimit: 0            // No limit on queue size (can be adjusted)
 
 });
 
