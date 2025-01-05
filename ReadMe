@@ -1,4 +1,3 @@
-Here's the updated version with the addition you requested regarding the MySQL root password:
 
 ---
 
@@ -12,13 +11,19 @@ Congratulations! You've just set foot in the **wonderful, soul-crushing world of
 
 ### **1. Open the Project in VS Code (You Actually Managed to Do This)**
 
-So, you cloned the repo from GitHub. Incredible. Now, open it in **VS Code**, the sacred text editor of our times. I mean, if you’re still using Notepad, I’m amazed you even found this readme without getting lost on the way. Press that shiny **VS Code** button, open the cloned repository, and let’s see if you can navigate your way out of this nightmare. No pressure. But, you know, there’s *always* pressure.
+So, you cloned the repo from GitHub. Incredible. Now, open it in **VS Code**, the a text editor of our times. I mean, if you’re still using Notepad, I’m amazed you even found this readme without getting lost on the way. Press that shiny **VS Code** button, open the cloned repository, and let’s see if you can navigate your way out of this nightmare. No pressure. But, you know, there’s *always* pressure. 
 
 I’m just going to say this upfront: This is the **only way I know how to do it**, so buckle up. If you find a better way, don’t tell me—I’m not ready for that kind of responsibility.
 
 ---
 
-### **2. Install the Magic Packages (Not as Hard as It Sounds, I Swear)**
+### **2. STRONGLY Suggestion: Download the Latest LTS Version of Node.js**
+
+Before you do anything, make sure you have the latest **LTS (Long-Term Support)** version of **Node.js** installed on your machine, why LTS? Because you don’t need to be messing with the Current version unless you’re really living on the edge. You can download it here: [Node.js Official Download](https://nodejs.org/). This is important because using an outdated version of Node.js will likely cause issues and make your life more miserable than already is. I know, unbelievable.
+
+---
+
+### **3. Install the Magic Packages (Not as Hard as It Sounds, I Swear)**
 
 Okay, now it’s time to **actually work**, but don’t panic, it’s not that bad. You won’t have to sell your soul or figure out why your computer is making weird noises. Just open a **PowerShell terminal inside VS** (because that’s what all the cool kids use, right?). Run this command:
 
@@ -39,9 +44,9 @@ Once you type this out, hit **Enter**, and sit back. The terminal will work its 
 
 ---
 
-### **3. Install Nodemon (The Lazy Way)**
+### **4. Install Nodemon (The Lazy Way)**
 
-Here’s where things get even lazier. Instead of manually restarting your server every time you make a change, you’re going to install **nodemon** globally, so it’ll do **half the work for you**. Open your terminal, inside vs code, and run this:
+Here’s where things get even lazier. Instead of manually restarting your server every time you make a change, you’re going to install **nodemon** globally, so it’ll do **half the work for you**. Open your terminal, inside VS Code, and run this:
 
 ```bash
 npm install -g nodemon
@@ -51,9 +56,9 @@ npm install -g nodemon
 
 ---
 
-### **4. Download the Database (Don't Panic, It's Just MySQL)**
+### **5. Download the Database (Don't Panic, It's Just MySQL)**
 
-Alright, you’ve made it this far—now let’s talk about getting your **MySQL database** up and running. You’re going to need **MySQL Server 8.2** (or **any version over 8.0**) and **MySQL Workbench 8.0.xx**. If you think this will be the smoothest part of the setup, I’ve got some bad news: it won’t be. But hey, at least we’re not setting up **PostgreSQL**—let’s count our blessings.
+Alright, you’ve made it this far—now let’s talk about getting your **MySQL database** up and running. You’re going to need **MySQL Server 8.2** (or **any version over 8.0**) and **MySQL Workbench 8.0.xx**. If you think this will be the smoothest part of the setup, I’ve got some bad news: it won’t be. It’s the part of the setup where you question your life choices and wonder why you didn’t just become a professional napper instead.
 
 #### **Step 1: Download MySQL Server 8.2 (or Later)**
 
@@ -79,32 +84,31 @@ Head over to the MySQL Workbench download page:
 
 Choose your operating system and download the installer. Once that’s done, run the installer and follow the prompts.
 
-#### **Step 3: Set Up Your Database**
+#### **Step 3. Set Up the Database Schema and Run Scripts**
 
-Now that you’ve got MySQL installed, it’s time to **set up the database**. Don’t worry, it’s not as terrifying as it sounds.
+Alright, you've made it this far, now let's take a deep breath and set up your **MySQL database schema** and run the necessary scripts. It’s time to define your database structure and get things rolling. Don’t worry, you’ll survive this!
 
-1. **Launch MySQL Server**: Open up **MySQL Command Line Client** and **log in** using the root user and the password you set during installation.
+1. **Open MySQL Workbench**: If you haven’t installed it yet, go back and do that. If you’ve got it, great. Launch it, and use your **root user** to log in (you did remember the password, right?).
 
+2. **Create the Database Schema (Only Once, Please)**: You’ll need to create the schema **just once**. Here’s how:
 
-```bash
-mysql -u root -p
-```
+    - On the left side of MySQL Workbench, find the **SCHEMAS** section. Right-click anywhere in this section and select **Create Schema**.
+    - **Name Your Schema**: You can name it whatever you like, but let’s stick with `your_db_name` for consistency.
+    - Click **Apply** to create the schema.
+    - **Only Do This Once**: From now on, use this schema for all your operations.
+    - Once the schema is created, **double-click** it in the left sidebar to select it. If you don’t see it immediately, click the **Update** button (the circular arrow icon near the top-left corner) to refresh the schema list.
 
-2. **Create the Database**: This part is easy. You’ll need to create the database for your server to interact with. Run this command:
+3. **Grab the Create and Insert Scripts**: Now that your schema is in place, you need to run the necessary **SQL scripts** from the repo. These will define your tables, relationships, and other important elements of your database. After that, grab the **insert scripts** to populate your database with initial data.
 
-```sql
-CREATE DATABASE your_db_name;
-```
+4. **Copy and Paste**: Open the SQL scripts you downloaded from the `DataBaseScripts` folder. Copy the contents of the `serve-the.truth-Creates.txt` and paste them into the MySQL Workbench query window, then do the same for the `serve-the.truth-Inserts.txt`. After pasting both scripts, click the **lightning bolt icon** (or press **Ctrl + Shift + Enter**) to run them.
 
-Pro tip: Replace **your_db_name** with something that actually makes sense. Calling it “serverdb” or “mydatabase” is just asking for trouble. Get creative, maybe call it **"TheEndOfMySanity"** or **"DoNotDisturb"**.
-
-3. **Exit MySQL**: Once you’ve created your database, type `exit` to leave the MySQL Command Line. You’re done here for now.
+Congratulations, your database is now set up and populated! You've successfully made it through the process and can start working with your server. Feel free to pretend like this was easy.
 
 ---
 
-### **5. Update Database Information (Do NOT Mess This Up)**
+### **6. Update Database Configuration (Do NOT Mess This Up)**
 
-Here it is: the **danger zone**. This is where everything can go horribly, horribly wrong. Forget the database credentials, and you'll end up with a server that's **more useless than your childhood dreams**. Open the `database.js` file and change the database information to something *you can actually use*.
+Here it is: the **danger zone**. Forget the database credentials, and you'll end up with a server that's **about as useful as a brick with Wi-Fi**. Open the `database.js` file and change the database information to something *you can actually use*.
 
 You’ll need to update:
 
@@ -130,7 +134,7 @@ If you **don’t** mess this up, your server will **thank you**. If you do, well
 
 ---
 
-### **6. Run the Server (Prepare for Glory)**
+### **7. Run the Server (Prepare for Glory)**
 
 Alright, enough procrastinating. It’s time to launch this **beast**. Open up a **Command Prompt** (because we’re not about that "fancy" PowerShell life for this step),
 
@@ -151,7 +155,7 @@ You did it. **Congratulations**, your server is now alive, and it will **exist u
 
 ---
 
-### **7. Stop the Madness (Before It Consumes Your Soul)**
+### **8. Stop the Madness (Before It Consumes Your Soul)**
 
 Want to stop the server? Maybe you’re tired, maybe the **CCP is watching**, or maybe you just want to play more **breeders of nephelim**. Whatever the case, don’t sweat it. You don’t need to restart your whole computer like a savage.
 
