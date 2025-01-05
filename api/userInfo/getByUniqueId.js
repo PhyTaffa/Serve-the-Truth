@@ -19,12 +19,12 @@ module.exports = async (req, res) => {
       }
 
       if (results.length === 0) {
-        return res.status(404).json(results.length)//({ message: 'No user found with that unique ID' });
+        return res.status(404).json({message: 'No user found with that Unique ID'})//({ message: 'No user found with that unique ID' });
       }
 
       // Return the first user found
       //console.error('userId:', req.params);
-      res.status(200).json(results.length);
+      res.status(200).json(results[0]);
     });
   } else {
     res.status(405).json({ error: 'Method Not Allowed' });
