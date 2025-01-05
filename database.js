@@ -18,7 +18,7 @@ const pool = mysql.createPool({
     // password: 'b30aa021bd77a83b6cb81330dc52e0719f677bce',
     // database: 'ServeTheTruth_individual',
 
-    
+
     //better practise, but i will leave the rest just to be sure
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -31,6 +31,6 @@ const pool = mysql.createPool({
 });
 
 // Use promise-based API for convenience
-const connection = pool.promise();
+const connection = pool;
 
 module.exports = connection;
