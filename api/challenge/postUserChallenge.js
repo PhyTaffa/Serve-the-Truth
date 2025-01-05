@@ -10,6 +10,14 @@ module.exports = async (req, res) => {
     }
 
     try {
+      const [userExists] = await connection.promise().execute(
+        'SELECT COUNT(*) AS count FROM UserInfo WHERE ui_id = ?',
+        [userId]
+      );
+      
+      if (userExists[0].count === 0) {
+        return res.status(400).json({ error: 'User does not exist' });
+      }
       // Check the number of challenges completed by the user
       const [challengeCount] = await connection.promise().execute(
         'SELECT COUNT(*) AS count FROM UserInfo_Challenge WHERE uc_ui_id = ?',
@@ -21,7 +29,10 @@ module.exports = async (req, res) => {
       if (existingCount >= 7) {
         // If the user already has 7 or more challenges, fetch and return them
         const [challenges] = await connection.promise().execute(
-          'SELECT * FROM UserInfo_Challenge WHERE uc_ui_id = ?',
+          `SELECT * 
+          FROM UserInfo_Challenge 
+          INNER JOIN Step_Challenge ON sc_id = uc_sc_id
+          WHERE uc_ui_id = 1`,
           [userId]
         );
 
@@ -44,11 +55,14 @@ module.exports = async (req, res) => {
 
       // Fetch and return all challenges for the user
       const [updatedChallenges] = await connection.promise().execute(
-        'SELECT * FROM UserInfo_Challenge WHERE uc_ui_id = ?',
+        `SELECT * 
+        FROM UserInfo_Challenge 
+        INNER JOIN Step_Challenge ON sc_id = uc_sc_id
+        WHERE uc_ui_id = 1`,
         [userId]
       );
 
-      res.status(200).json({ challenges: updatedChallenges });
+      res.status(200).json({ updatedChallenges });
     } catch (err) {
       console.error('Database error:', err);
       res.status(500).json({ error: 'Internal server error' });
