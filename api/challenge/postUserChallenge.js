@@ -2,28 +2,34 @@ const connection = require('../../database');
 
 module.exports = async (req, res) => {
   if (req.method === 'POST') {
-    const { uniqueId } = req.query;
+    const { userId } = req.query;
 
-    // Check if uniqueId is provided
-    if (!uniqueId) {
-      return res.status(400).json({ error: 'Unique ID is missing' });
+    // Check if userId is provided
+    if (!userId) {
+      return res.status(400).json({ error: 'User ID is missing' });
     }
 
     try {
-      // Check if the uniqueId exists and fetch the corresponding userId
-      const [userCheck] = await connection.promise().execute(
-        `SELECT ui_id FROM UserInfo WHERE ui_uniqueId = ? LIMIT 1`,
-        [uniqueId]
+      // Check the number of challenges completed by the user
+      const [challengeCount] = await connection.promise().execute(
+        'SELECT COUNT(*) AS count FROM UserInfo_Challenge WHERE uc_ui_id = ?',
+        [userId]
       );
 
-      if (userCheck.length === 0) {
-        return res.status(404).json({ error: 'User not found in the database' });
+      const existingCount = challengeCount[0].count;
+
+      if (existingCount >= 7) {
+        // If the user already has 7 or more challenges, fetch and return them
+        const [challenges] = await connection.promise().execute(
+          'SELECT * FROM UserInfo_Challenge WHERE uc_ui_id = ?',
+          [userId]
+        );
+
+        return res.status(200).json({ challenges });
       }
 
-      const userId = userCheck[0].ui_id;
-
-      // Insert step challenges into the database
-      const [results] = await connection.promise().execute(
+      // If fewer than 7 challenges exist, create all 7 challenges
+      await connection.promise().execute(
         `INSERT INTO UserInfo_Challenge (uc_ui_id, uc_sc_id, uc_currSteps, uc_startTime, uc_isStarted)
          VALUES 
          (?, 1, 0, 0, 1),
@@ -33,18 +39,19 @@ module.exports = async (req, res) => {
          (?, 5, 0, 0, 0),
          (?, 6, 0, 0, 0),
          (?, 7, 0, 0, 0)`,
-        Array(7).fill(userId) // Fill an array with userId for each placeholder
+        Array(7).fill(userId)
       );
 
-      // Check if rows were affected
-      if (results.affectedRows > 0) {
-        res.status(200).json({ message: 'Step challenges inserted successfully' });
-      } else {
-        res.status(400).json({ error: 'No rows were inserted' });
-      }
+      // Fetch and return all challenges for the user
+      const [updatedChallenges] = await connection.promise().execute(
+        'SELECT * FROM UserInfo_Challenge WHERE uc_ui_id = ?',
+        [userId]
+      );
+
+      res.status(200).json({ challenges: updatedChallenges });
     } catch (err) {
       console.error('Database error:', err);
-      res.status(500).json({ error: 'Internal server error' + err });
+      res.status(500).json({ error: 'Internal server error' });
     }
   } else {
     res.status(405).json({ error: 'Method Not Allowed' });

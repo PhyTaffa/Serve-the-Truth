@@ -16,7 +16,7 @@ const pool = mysql.createPool({
     // host: '9nrms.h.filess.io',
     // user: 'ServeTheTruth_individual', 
     // port: "3307",
-    // password: '',
+    // password: 'b30aa021bd77a83b6cb81330dc52e0719f677bce',
     // database: 'ServeTheTruth_individual',
 
 
@@ -42,7 +42,7 @@ const pool = mysql.createPool({
     password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT,
     database: process.env.DB_NAME,
-    
+
     waitForConnections: true,
     connectionLimit: 2,    // Match the connection limit of your online DB
     queueLimit: 0          // No limit on queue size (can be adjusted)
