@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
         [uniqueId], (err, results) => {
         if (err) {
           console.error('Database error:', err);
-          return res.status(500).json({ error: 'Database error' });
+          return res.status(500).json({ error: 'Database error ' + err });
         }
   
         if (results.length === 0) {

@@ -1,3 +1,4 @@
+Here's the updated version with the addition you requested regarding the MySQL root password:
 
 ---
 
@@ -11,16 +12,18 @@ Congratulations! You've just set foot in the **wonderful, soul-crushing world of
 
 ### **1. Open the Project in VS Code (You Actually Managed to Do This)**
 
-So, you cloned the repo from GitHub. Incredible. Now, open it in **VS Code**, the sacred text editor of our times. I mean, if you’re still using Notepad, I’m amazed you even found this readme without getting lost on the way. Open that folder, press that shiny **VS Code** button, and let’s see if you can navigate your way out of this nightmare. No pressure. But, you know, there’s *always* pressure.
+So, you cloned the repo from GitHub. Incredible. Now, open it in **VS Code**, the sacred text editor of our times. I mean, if you’re still using Notepad, I’m amazed you even found this readme without getting lost on the way. Press that shiny **VS Code** button, open the cloned repository, and let’s see if you can navigate your way out of this nightmare. No pressure. But, you know, there’s *always* pressure.
+
+I’m just going to say this upfront: This is the **only way I know how to do it**, so buckle up. If you find a better way, don’t tell me—I’m not ready for that kind of responsibility.
 
 ---
 
 ### **2. Install the Magic Packages (Not as Hard as It Sounds, I Swear)**
 
-Okay, now it’s time to **actually work**, but don’t panic, it’s not that bad. You won’t have to sell your soul or figure out why your computer is making weird noises. Just open a **PowerShell terminal** (because that’s what all the cool kids use, right?) inside VS Code and run this command:
+Okay, now it’s time to **actually work**, but don’t panic, it’s not that bad. You won’t have to sell your soul or figure out why your computer is making weird noises. Just open a **PowerShell terminal inside VS** (because that’s what all the cool kids use, right?). Run this command:
 
 ```bash
-npm install express express-session mysql2 cors nodemon
+npm install express express-session mysql2 cors
 ```
 
 **CCP-Approved™**
@@ -31,20 +34,82 @@ I know what you’re thinking: *Why in the hell do I need all this stuff?* Let�
 - **express-session**: It will remember you. Unlike that one game where you forgot to save and lost hours of progress. Don’t worry, your server will always remember you.
 - **mysql2**: Because your server needs to talk to a **database**—and **database** sounds like something you can’t escape from, but it’s just a fancy word for "data storage" that will never, ever, ever work on the first try.
 - **cors**: It makes your server not spontaneously combust when it talks to the outside world. Your server won’t implode from external requests, but don’t hold your breath for anything else.
-- **nodemon**: This tool restarts your server when you make changes. In other words, it's a tool that does **half the work for you**, and we’re all about that lazy life.
 
 Once you type this out, hit **Enter**, and sit back. The terminal will work its magic and install everything while you stare blankly at the screen and wonder if you’ve made a terrible mistake.
 
 ---
 
-### **3. Update Database Information (Do NOT Mess This Up)**
+### **3. Install Nodemon (The Lazy Way)**
+
+Here’s where things get even lazier. Instead of manually restarting your server every time you make a change, you’re going to install **nodemon** globally, so it’ll do **half the work for you**. Open your terminal, inside vs code, and run this:
+
+```bash
+npm install -g nodemon
+```
+
+**Pro Tip**: Don’t worry about typing it all out every time. This is **global** installation, so it’ll be available everywhere.
+
+---
+
+### **4. Download the Database (Don't Panic, It's Just MySQL)**
+
+Alright, you’ve made it this far—now let’s talk about getting your **MySQL database** up and running. You’re going to need **MySQL Server 8.2** (or **any version over 8.0**) and **MySQL Workbench 8.0.xx**. If you think this will be the smoothest part of the setup, I’ve got some bad news: it won’t be. But hey, at least we’re not setting up **PostgreSQL**—let’s count our blessings.
+
+#### **Step 1: Download MySQL Server 8.2 (or Later)**
+
+First things first: head over to the official **MySQL website**. Don’t Google “MySQL download” unless you want to get lost in a labyrinth of third-party websites. Go to this direct link:  
+[Download MySQL Server 8.2 (or later)](https://dev.mysql.com/downloads/installer/).
+
+Now, here’s where you *might* get a little confused:
+
+- **Select your operating system**: Windows, MacOS, Linux—pick your poison. I'm assuming you're on Windows because that's where the magic happens, but if you’re using Linux, good luck, my friend. You're on your own.
+  
+- **Choose the MySQL Installer**: You’ll get an option for a web installer or a full installer. **Full installer** is the way to go because you don’t want to be **downloading dependencies** every time you blink.
+
+Once it’s downloaded, run the installer and let it do its thing. It will ask you if you want the **Developer Default** setup, or a **Custom** setup. Choose **Developer Default** unless you want to spend 45 minutes unchecking random options because you have no idea what they do. Pro tip: leave everything checked. The only thing you might not need is **MySQL Workbench**, but if you’re into making your life harder, go ahead and install it.
+
+**IMPORTANT NOTE**: Do **NOT** forget the password you set for the **root** user during installation. **Seriously**. We both know you’re not going to create a new user—nobody ever does. So when it asks for the password, **make sure you remember it** (or store it somewhere safe). You’ll be using the **root** user for this setup, and it will be your lifeline (or your downfall) throughout this process.
+
+#### **Step 2: Install MySQL Workbench 8.0.xx**
+
+Now, for **MySQL Workbench 8.0.xx**. This is an essential tool to manage and interact with your MySQL server through a nice graphical interface, because who wants to type SQL commands all day? Not you, I’m sure.
+
+Head over to the MySQL Workbench download page:  
+[Download MySQL Workbench 8.0.xx](https://dev.mysql.com/downloads/workbench/).
+
+Choose your operating system and download the installer. Once that’s done, run the installer and follow the prompts.
+
+#### **Step 3: Set Up Your Database**
+
+Now that you’ve got MySQL installed, it’s time to **set up the database**. Don’t worry, it’s not as terrifying as it sounds.
+
+1. **Launch MySQL Server**: Open up **MySQL Command Line Client** and **log in** using the root user and the password you set during installation.
+
+
+```bash
+mysql -u root -p
+```
+
+2. **Create the Database**: This part is easy. You’ll need to create the database for your server to interact with. Run this command:
+
+```sql
+CREATE DATABASE your_db_name;
+```
+
+Pro tip: Replace **your_db_name** with something that actually makes sense. Calling it “serverdb” or “mydatabase” is just asking for trouble. Get creative, maybe call it **"TheEndOfMySanity"** or **"DoNotDisturb"**.
+
+3. **Exit MySQL**: Once you’ve created your database, type `exit` to leave the MySQL Command Line. You’re done here for now.
+
+---
+
+### **5. Update Database Information (Do NOT Mess This Up)**
 
 Here it is: the **danger zone**. This is where everything can go horribly, horribly wrong. Forget the database credentials, and you'll end up with a server that's **more useless than your childhood dreams**. Open the `database.js` file and change the database information to something *you can actually use*.
 
 You’ll need to update:
 
 - **host**: Set this to 'localhost' if you’re keeping it simple, or *go big* with a remote server. But remember, that’s a step into **uncharted waters**, so don’t get cocky.
-- **user**: Your **MySQL username**. Pro tip: It's **not** 'root'. I know, it’s a shocker.
+- **user**: Your **MySQL username**. Pro tip: It should **not** 'root' but knowing you, the chance that ityou didnt create another user are inflated, just how i like it.
 - **password**: Remember that password you set? Yeah, it’s the one you don’t share with anyone. Hopefully you still remember it.
 - **database**: The name of the database. It **better exist**, because this isn’t a guessing game. *Throwing random words at it won’t help*.
 
@@ -55,7 +120,7 @@ const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
   host: 'localhost',  // Change this if you're a masochist and using a remote server
-  user: 'your_db_user',  // Not 'root', for the love of God
+  user: 'your_db_user',  // Not 'root', for the love of God, but it's going to be "root" either way
   password: 'your_db_password',  // You remembered this, right?
   database: 'your_db_name'  // Yes, this must exist. Please don’t just type gibberish
 });
@@ -65,12 +130,14 @@ If you **don’t** mess this up, your server will **thank you**. If you do, well
 
 ---
 
-### **4. Run the Server (Prepare for Glory)**
+### **6. Run the Server (Prepare for Glory)**
 
-Alright, enough procrastinating. It’s time to launch this **beast**. Open up a **Command Prompt** (because we’re not about that "fancy" PowerShell life for this step), and run:
+Alright, enough procrastinating. It’s time to launch this **beast**. Open up a **Command Prompt** (because we’re not about that "fancy" PowerShell life for this step),
+
+ and run:
 
 ```bash
-nodemon index.js
+nodemon api/index.js
 ```
 
 This magical incantation will summon your server into existence. **Don’t panic** when your screen fills up with text like you’re trying to read the matrix. That’s just the server doing its thing. You’ll see something like this:
@@ -80,11 +147,11 @@ Server is running on http://0.0.0.0:3000 🤙
 Connected to the database! Please don’t break anything.
 ```
 
-You did it. **Congratulations**, your server is now alive, and it will **exist until it inevitably breaks**, which will happen because servers have a way of doing that. 
+You did it. **Congratulations**, your server is now alive, and it will **exist until it inevitably breaks**, which will happen because servers have a way of doing that.
 
 ---
 
-### **5. Stop the Madness (Before It Consumes Your Soul)**
+### **7. Stop the Madness (Before It Consumes Your Soul)**
 
 Want to stop the server? Maybe you’re tired, maybe the **CCP is watching**, or maybe you just want to play more **breeders of nephelim**. Whatever the case, don’t sweat it. You don’t need to restart your whole computer like a savage.
 
