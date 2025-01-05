@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
           );
 
           // Return the full user information
-          res.status(201).json({ message: 'New User created!', user: newUser[0] });
+          res.status(201).json(newUser[0]);
         } else {
           // Handle error if insert failed
           res.status(500).json({ error: 'Failed to create new user' });
