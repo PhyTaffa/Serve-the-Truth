@@ -8,6 +8,7 @@ const userInfoByUniqueId = require('../api/userInfo/getByUniqueId');
 const userInfoUpdatePrevChallenge = require('../api/userInfo/updatePreviousChallenge.js');
 const userInfoUpdateActiveChallenge = require('../api/userInfo/setActiveChallenge.js');
 const userInfoPostId = require('../api/userInfo/postNewUser');
+const putUserName = require('../api/userInfo/putUserName');
 const challengeAll = require('../api/challenge/all');
 const challengeById = require('../api/challenge/getById');
 const challengeMetByUniqueId = require('../api/challenge/getCompletedChallengesByUniqueId');
@@ -47,6 +48,7 @@ app.use('/userInfo/getByUniqueId', userInfoByUniqueId);
 app.use('/userInfo/updatePreviousChallenge', userInfoUpdatePrevChallenge);
 app.use('/userInfo/setActiveChallenge', userInfoUpdateActiveChallenge);
 app.use('/userInfo/postNewUser', userInfoPostId);
+app.use('/userInfo/putUserName', putUserName)
 app.use('/challenge/all/', challengeAll);
 app.use('/challenge/getById/', challengeById);
 app.use('/challenge/getCompletedChallengesByUniqueId/', challengeMetByUniqueId);
