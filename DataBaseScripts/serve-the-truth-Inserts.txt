@@ -1,11 +1,6 @@
-#         inserts
-#--------------------------------------------------------Dynamic Table----------------------------------------------------------------------------
+# serve the truth Inserts
 
-insert into UserInfo (ui_name, ui_email, ui_pfp, ui_activeChallRef, ui_uniqueId) values('name 1', "dontCare@all.yes", 1, 1, 11);	#id:1
-insert into UserInfo (ui_name, ui_email, ui_pfp, ui_activeChallRef, ui_uniqueId) values('name 2', "dontCare@all.yes", 2, 1, 22);	#id:2
-insert into UserInfo (ui_name, ui_email, ui_pfp, ui_activeChallRef, ui_uniqueId) values('name 3', "dontCare@all.yes", 3, 1, 33);	#id:3
-insert into UserInfo (ui_name, ui_email, ui_pfp, ui_activeChallRef, ui_uniqueId) values('name 4', "dontCare@all.nit", 4, 1, 44);	#id:4
-
+#----------------------------Static Table-------------------------------------
 
 INSERT INTO Step_Challenge (sc_title, sc_description, sc_assets, sc_skin, sc_difficulty, sc_stepsToReach, sc_timeLimit)
 VALUES
@@ -16,6 +11,13 @@ VALUES
 ("Challenge 5", "Description 5", 5, 2, 4, 8590, 100),  -- Difficulty 4 (Very High steps)
 ("Challenge 6", "Description 6", 6, 2, 2, 4590, 100),  -- Difficulty 2 (Medium steps)
 ("Challenge 7", "Description 7", 6, 2, 4, 9820, 100);  -- Difficulty 4 (Very High steps)
+
+#-----------------------Dynamic Table----------------------------------------
+
+insert into UserInfo (ui_name, ui_email, ui_pfp, ui_activeChallRef, ui_uniqueId) values('name 1', "dontCare@all.yes", 1, 1, 11);	#id:1
+insert into UserInfo (ui_name, ui_email, ui_pfp, ui_activeChallRef, ui_uniqueId) values('name 2', "dontCare@all.yes", 2, 1, 22);	#id:2
+insert into UserInfo (ui_name, ui_email, ui_pfp, ui_activeChallRef, ui_uniqueId) values('name 3', "dontCare@all.yes", 3, 1, 33);	#id:3
+insert into UserInfo (ui_name, ui_email, ui_pfp, ui_activeChallRef, ui_uniqueId) values('name 4', "dontCare@all.nit", 4, 1, 44);	#id:4
 
 INSERT INTO UserInfo_Challenge (uc_ui_id, uc_sc_id, uc_currSteps, uc_startTime, uc_isStarted)
 VALUES
@@ -29,7 +31,7 @@ VALUES
 (1, 7, 9820, 1, 1),  -- User 1, Challenge 7
 
 -- User 2 (uc_ui_id = 2)
-(2, 1, 0, 0, 0),     -- User 2, Challenge 1
+(2, 1, 0, 0, 1),     -- User 2, Challenge 1
 (2, 2, 3050, 1, 1),  -- User 2, Challenge 2
 (2, 3, 7230, 1, 1),  -- User 2, Challenge 3
 (2, 4, 0, 0, 0),     -- User 2, Challenge 4
@@ -38,7 +40,7 @@ VALUES
 (2, 7, 0, 0, 0),     -- User 2, Challenge 7
 
 -- User 3 (uc_ui_id = 3)
-(3, 1, 0, 0, 0),     -- User 3, Challenge 1
+(3, 1, 0, 0, 1),     -- User 3, Challenge 1
 (3, 2, 3050, 1, 1),  -- User 3, Challenge 2
 (3, 3, 0, 0, 0),     -- User 3, Challenge 3
 (3, 4, 6230, 1, 1),  -- User 3, Challenge 4

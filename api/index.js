@@ -4,8 +4,10 @@ const session = require('express-session');
 const connection = require('../database');
 const userInfoAll = require('../api/userInfo/all');
 const userInfoById = require('../api/userInfo/getById');
+const userInfoByUniqueId = require('../api/userInfo/getByUniqueId');
 const userInfoUpdatePrevChallenge = require('../api/userInfo/updatePreviousChallenge.js');
-const userInfoUpdateActiveChallenge = require('../api/userInfo/setActiveChallenge.js')
+const userInfoUpdateActiveChallenge = require('../api/userInfo/setActiveChallenge.js');
+const userInfoPostId = require('../api/userInfo/postNewUser');
 const challengeAll = require('../api/challenge/all');
 const challengeById = require('../api/challenge/getById');
 const challengeMetByUniqueId = require('../api/challenge/getCompletedChallengesByUniqueId');
@@ -40,8 +42,10 @@ app.use(express.static('www'));
 //API routs
 app.use('/userInfo/all/', userInfoAll);
 app.use('/userInfo/getById', userInfoById);
+app.use('/userInfo/getByUniqueId', userInfoByUniqueId);
 app.use('/userInfo/updatePreviousChallenge', userInfoUpdatePrevChallenge);
 app.use('/userInfo/setActiveChallenge', userInfoUpdateActiveChallenge);
+app.use('/userInfo/postNewUser', userInfoPostId);
 app.use('/challenge/all/', challengeAll);
 app.use('/challenge/getById/', challengeById);
 app.use('/challenge/getCompletedChallengesByUniqueId/', challengeMetByUniqueId);
