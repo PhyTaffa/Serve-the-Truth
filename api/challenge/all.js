@@ -3,7 +3,7 @@ const connection = require('../../database');
 
 module.exports = async (req, res) => {
   if (req.method === 'GET') {
-    connection.execute('SELECT * FROM Step_Challenge;', (err, results) => {
+    connection.execute('SELECT * FROM Step_Challenge', (err, results) => {
       if (err) {
         console.error('Error fetching challenges:', err);
         return res.status(500).json({ error: err.message });

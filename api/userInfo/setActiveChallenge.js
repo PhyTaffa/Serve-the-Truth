@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
     try {
       // Update the active challenge reference in the database
       const [results] = await connection.promise().execute(
-        'UPDATE UserInfo SET ui_activeChallRef = ? WHERE ui_id = ?;',
+        'UPDATE UserInfo SET ui_activeChallRef = ? WHERE ui_id = ?',
         [challengeId, userId]
       );
 

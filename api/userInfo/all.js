@@ -2,7 +2,7 @@ const connection = require('../../database');
 
 module.exports = async (req, res) => {
   try {
-    connection.execute('SELECT * FROM UserInfo;', (err, results) => {
+    connection.execute('SELECT * FROM UserInfo', (err, results) => {
       if (err) {
         return res.status(500).json({ error: err.message });
       }

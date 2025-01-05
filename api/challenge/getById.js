@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
          FROM UserInfo_Challenge 
          INNER JOIN UserInfo ON ui_id = uc_ui_id 
          INNER JOIN Step_Challenge ON uc_sc_id = sc_id 
-         WHERE uc_ui_id = ?;`,
+         WHERE uc_ui_id = ?`,
         [userId]
       );
 

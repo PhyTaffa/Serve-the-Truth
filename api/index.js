@@ -11,6 +11,7 @@ const userInfoPostId = require('../api/userInfo/postNewUser');
 const challengeAll = require('../api/challenge/all');
 const challengeById = require('../api/challenge/getById');
 const challengeMetByUniqueId = require('../api/challenge/getCompletedChallengesByUniqueId');
+const challengePost = require('../api/challenge/postUserChallenge');
 
 // Set the port of the server
 const serverPort = 3000;
@@ -49,6 +50,7 @@ app.use('/userInfo/postNewUser', userInfoPostId);
 app.use('/challenge/all/', challengeAll);
 app.use('/challenge/getById/', challengeById);
 app.use('/challenge/getCompletedChallengesByUniqueId/', challengeMetByUniqueId);
+app.use('/challenge/postUserChallenge/', challengePost);
 
 
 // Export as a Vercel-compatible serverless function

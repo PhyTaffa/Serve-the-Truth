@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
     try {
       // Update the challenge steps in the database
       const [results] = await connection.promise().execute(
-        'UPDATE UserInfo_Challenge SET uc_isStarted = ?, uc_currSteps = ? WHERE uc_ui_id = ? AND uc_sc_id = ?;',
+        'UPDATE UserInfo_Challenge SET uc_isStarted = ?, uc_currSteps = ? WHERE uc_ui_id = ? AND uc_sc_id = ?',
         [isStarted, stepsNum, userId, challengeId]
       );
 
@@ -36,7 +36,7 @@ module.exports = async (req, res) => {
       });
     } catch (err) {
       console.error('Database error:', err);
-      res.status(500).json({ error: 'Internal server error asdkhvofajsvflajsdofasvdfj' });
+      res.status(500).json({ error: 'Internal server error' });
     }
   } else {
     res.status(405).json({ error: 'Method Not Allowed' });

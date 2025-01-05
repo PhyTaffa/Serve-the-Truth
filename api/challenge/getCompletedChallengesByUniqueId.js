@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
       const [userResults] = await connection.promise().execute(
         `SELECT ui_id, ui_uniqueId
          FROM UserInfo
-         WHERE ui_uniqueId = ?;`,
+         WHERE ui_uniqueId = ?`,
         [uiUniqueId]
       );
 
@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
         `SELECT uc_id, sc_stepsToReach, uc_currSteps, uc_startTime
          FROM UserInfo_Challenge
          INNER JOIN Step_Challenge ON uc_sc_id = sc_id
-         WHERE uc_ui_id = ?;`,
+         WHERE uc_ui_id = ?`,
         [userId]
       );
 

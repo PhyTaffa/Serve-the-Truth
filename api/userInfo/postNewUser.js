@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
       }
   
       // Query the database to fetch user information
-      connection.execute('INSERT INTO UserInfo (ui_name, ui_pfp, ui_activeChallRef, ui_uniqueId) VALUES ("Amogus", 1, 1, ?);',
+      connection.execute('INSERT INTO UserInfo (ui_name, ui_pfp, ui_activeChallRef, ui_uniqueId) VALUES ("Amogus", 1, 1, ?)',
         [uniqueId], (err, results) => {
         if (err) {
           console.error('Database error:', err);
