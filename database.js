@@ -1,7 +1,7 @@
 const mysql = require('mysql2');
 
 // Create a new connection to the database
-const connection = mysql.createConnection({
+const pool = mysql.createPool({
 
     //localHost:
     // host: 'localhost',
@@ -22,5 +22,8 @@ const connection = mysql.createConnection({
     queueLimit: 0            // No limit on queue size (can be adjusted)
 
 });
+
+// Use promise-based API for convenience
+const connection = pool.promise();
 
 module.exports = connection;
