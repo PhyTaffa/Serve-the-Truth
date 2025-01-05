@@ -4,13 +4,13 @@
 
 INSERT INTO Step_Challenge (sc_title, sc_description, sc_assets, sc_skin, sc_difficulty, sc_stepsToReach, sc_timeLimit)
 VALUES
-("Challenge 1", "Description 1", 1, 1, 1, 1500, 100),  -- Difficulty 1 (Low steps)
-("Challenge 2", "Description 2", 2, 2, 2, 3050, 100),  -- Difficulty 2 (Medium steps)
-("Challenge 3", "Description 3", 3, 2, 3, 7530, 100),  -- Difficulty 3 (High steps)
-("Challenge 4", "Description 4", 4, 2, 3, 6230, 100),  -- Difficulty 3 (High steps)
-("Challenge 5", "Description 5", 5, 2, 4, 8590, 100),  -- Difficulty 4 (Very High steps)
-("Challenge 6", "Description 6", 6, 2, 2, 4590, 100),  -- Difficulty 2 (Medium steps)
-("Challenge 7", "Description 7", 6, 2, 4, 9820, 100);  -- Difficulty 4 (Very High steps)
+("10 000 in a day", "Aim to reach 10,000 steps. It’s the gold standard for daily activity!", 1, 1, 1, 10000, 100),  -- Difficulty 1 (Low steps)
+("Steps to Health", "Walk 5,000 steps to boost your energy and get your body moving.", 2, 2, 2, 5000, 100),  -- Difficulty 2 (Medium steps)
+("Trailblazer Challenge", "Take 7,500 steps a day for a week and explore new routes and trails in your neighborhood.", 3, 2, 3, 52500, 100),  -- Difficulty 3 (High steps)
+("Urban Explorer", "Walk 8,000 steps a day over the course of a weekend to discover local parks, monuments, or points of interest", 4, 2, 3, 16000, 100),  -- Difficulty 3 (High steps)
+("Morning Stroll Challenge", "Complete 6,000 steps in the morning to kickstart your metabolism and boost your mood.", 5, 2, 4, 6000, 100),  -- Difficulty 4 (Very High steps)
+("Fast and Furios", "Walk 1500 Steps in just 30 minutes", 6, 2, 2, 1500, 1800),  -- Difficulty 2 (Medium steps)
+("Workday Steps", "Aim for 3,000 steps every hour while at work. Take a short walk during breaks to reach 9000 steps by the end of your shift.", 0, 2, 4, 9000, 100);  -- Difficulty 4 (Very High steps)
 
 #-----------------------Dynamic Table----------------------------------------
 
