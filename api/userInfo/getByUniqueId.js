@@ -24,14 +24,20 @@ module.exports = async (req, res) => {
         );
 
         if (insertResult.affectedRows > 0) {
-          // Return a message saying that the user was created
-          res.status(201).json({ message: 'New User created!', userId: insertResult.insertId });
+          // Fetch the newly inserted user and return the full UserInfo
+          const [newUser] = await connection.promise().execute(
+            'SELECT * FROM UserInfo WHERE ui_uniqueId = ?',
+            [uniqueId]
+          );
+
+          // Return the full user information
+          res.status(201).json({ message: 'New User created!', user: newUser[0] });
         } else {
           // Handle error if insert failed
           res.status(500).json({ error: 'Failed to create new user' });
         }
       } else {
-        // Return the first user found if already exists
+        // Return the full user information if user already exists
         res.status(200).json(results[0]);
       }
     } catch (err) {
