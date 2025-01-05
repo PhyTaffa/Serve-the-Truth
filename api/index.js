@@ -64,6 +64,7 @@ module.exports = (req, res) => {
     try {
       await connection.execute('SELECT 1'); // Simple query to verify connection
       console.log('Connected to the database! Please don’t break anything.');
+
     } catch (err) {
       console.error('Error connecting to the database:', err);
     }

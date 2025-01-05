@@ -42,6 +42,7 @@ const pool = mysql.createPool({
     password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT,
     database: process.env.DB_NAME,
+    
     waitForConnections: true,
     connectionLimit: 2,    // Match the connection limit of your online DB
     queueLimit: 0          // No limit on queue size (can be adjusted)
