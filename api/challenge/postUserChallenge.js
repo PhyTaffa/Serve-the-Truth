@@ -36,7 +36,7 @@ module.exports = async (req, res) => {
           [userId]
         );
 
-        return res.status(200).json({ challenges });
+        return res.status(200).json({ challenges: challenges });
       }
 
       // If fewer than 7 challenges exist, create all 7 challenges
@@ -62,7 +62,7 @@ module.exports = async (req, res) => {
         [userId]
       );
 
-      res.status(200).json({ updatedChallenges });
+      res.status(200).json({ challenges: updatedChallenges });
     } catch (err) {
       console.error('Database error:', err);
       res.status(500).json({ error: 'Internal server error' });
