@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
           `SELECT * 
           FROM UserInfo_Challenge 
           INNER JOIN Step_Challenge ON sc_id = uc_sc_id
-          WHERE uc_ui_id = 1`,
+          WHERE uc_ui_id = ?`,
           [userId]
         );
 
@@ -58,7 +58,7 @@ module.exports = async (req, res) => {
         `SELECT * 
         FROM UserInfo_Challenge 
         INNER JOIN Step_Challenge ON sc_id = uc_sc_id
-        WHERE uc_ui_id = 1`,
+        WHERE uc_ui_id = ?`,
         [userId]
       );
 
