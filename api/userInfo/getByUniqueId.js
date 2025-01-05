@@ -42,7 +42,7 @@ module.exports = async (req, res) => {
       }
     } catch (err) {
       console.error('Database error:', err);
-      res.status(500).json({ error: 'Database error' });
+      res.status(500).json({ error: 'Database error' + err });
     }
   } else {
     res.status(405).json({ error: 'Method Not Allowed' });

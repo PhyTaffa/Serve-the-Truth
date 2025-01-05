@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
     }
 
     try {
-      // Use the connection pool to execute the query directly
+      // Execute the query directly from the pool
       const [results] = await connection.promise().execute(
         `SELECT uc_id, ui_id, sc_id, sc_title, sc_description, sc_assets, sc_skin, sc_difficulty, 
                 sc_stepsToReach, sc_timeLimit, uc_currSteps, uc_startTime, uc_isStarted
