@@ -2,21 +2,21 @@ const connection = require('../../database');
 
 module.exports = async (req, res) => {
   if (req.method === 'POST') {
-    const { username, uniqueId } = req.query; // Expecting the data in the request body
+    const { username, userId } = req.query; // Expecting the data in the request body
 
     // Check if both username and uniqueId are provided
     if (!username) {
       return res.status(400).json({ error: 'Username are required' });
     }
-    if (!uniqueId) {
-        return res.status(400).json({ error: 'uniqueId are required' });
+    if (!userId) {
+        return res.status(400).json({ error: 'userId are required' });
       }
 
     try {
         // User exists, update user data
         const [updateResults] = await connection.promise().execute(
-          'UPDATE UserInfo SET ui_name = ? WHERE ui_uniqueId = ?',
-          [username, uniqueId]
+          'UPDATE UserInfo SET ui_name = ? WHERE ui_id = ?',
+          [username, userId]
         );
 
         if (updateResults.affectedRows > 0) {
